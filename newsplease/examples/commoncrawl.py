@@ -35,7 +35,7 @@ import sys
 import datetime
 from datetime import date
 
-from ..crawler import commoncrawl_crawler as commoncrawl_crawler
+from newsplease.crawler import commoncrawl_crawler as commoncrawl_crawler
 
 __author__ = "Felix Hamborg"
 __copyright__ = "Copyright 2017"
@@ -60,8 +60,10 @@ my_filter_end_date = None  # datetime.datetime(2016, 12, 31)
 # articles from that date. Instead, you must assume that the warc file can contain articles
 # from ANY time before the warc file was published, e.g., a warc file published in August 2020
 # may contain news articles from December 2016.
-my_warc_files_start_date = None # example: datetime.datetime(2020, 3, 1)
-my_warc_files_end_date = None # example: datetime.datetime(2020, 3, 2)
+
+my_filter_language = ['de']
+my_warc_files_start_date = datetime.datetime(2020, 1, 1) # example: datetime.datetime(2020, 3, 1)
+my_warc_files_end_date = datetime.datetime(2022, 5, 1) # example: datetime.datetime(2020, 3, 2)
 # if date filtering is strict and news-please could not detect the date of an article, the article will be discarded
 my_filter_strict_date = True
 # if True, the script checks whether a file has been downloaded already and uses that file instead of downloading
@@ -186,7 +188,8 @@ def main():
                                                delete_warc_after_extraction=my_delete_warc_after_extraction,
                                                continue_process=True,
                                                fetch_images=my_fetch_images,
-                                               dry_run=my_dry_run)
+                                               dry_run=my_dry_run,
+                                               valid_languages=my_filter_language)
 
 
 if __name__ == "__main__":

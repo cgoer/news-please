@@ -289,7 +289,7 @@ def __start_commoncrawl_extractor(warc_path, callback_on_article_extracted=None,
                                   continue_process=True,
                                   log_pathname_fully_extracted_warcs=None,
                                   extractor_cls=CommonCrawlExtractor,
-                                  fetch_images=False):
+                                  fetch_images=False, valid_languages=None):
     """
     Starts a single CommonCrawlExtractor
     :param warc_path:
@@ -322,7 +322,7 @@ def __start_commoncrawl_extractor(warc_path, callback_on_article_extracted=None,
                                                    log_level=log_level,
                                                    delete_warc_after_extraction=delete_warc_after_extraction,
                                                    log_pathname_fully_extracted_warcs=__log_pathname_fully_extracted_warcs,
-                                                   fetch_images=fetch_images)
+                                                   fetch_images=fetch_images, valid_languages=valid_languages)
 
 
 def crawl_from_commoncrawl(callback_on_article_extracted, callback_on_warc_completed=None, valid_hosts=None,
@@ -331,7 +331,7 @@ def crawl_from_commoncrawl(callback_on_article_extracted, callback_on_warc_compl
                            continue_after_error=True, show_download_progress=False,
                            number_of_extraction_processes=4, log_level=logging.ERROR,
                            delete_warc_after_extraction=True, continue_process=True,
-                           extractor_cls=CommonCrawlExtractor, fetch_images=False, dry_run=False):
+                           extractor_cls=CommonCrawlExtractor, fetch_images=False, dry_run=False, valid_languages=None):
     """
     Crawl and extract articles form the news crawl provided by commoncrawl.org. For each article that was extracted
     successfully the callback function callback_on_article_extracted is invoked where the first parameter is the
@@ -405,7 +405,7 @@ def crawl_from_commoncrawl(callback_on_article_extracted, callback_on_warc_compl
                                                 delete_warc_after_extraction=delete_warc_after_extraction,
                                                 log_pathname_fully_extracted_warcs=__log_pathname_fully_extracted_warcs,
                                                 extractor_cls=extractor_cls,
-                                                fetch_images=fetch_images),
+                                                fetch_images=fetch_images, valid_languages=valid_languages),
                                         warc_paths)
     else:
         for warc_path in warc_paths:
@@ -423,4 +423,4 @@ def crawl_from_commoncrawl(callback_on_article_extracted, callback_on_warc_compl
                                           delete_warc_after_extraction=delete_warc_after_extraction,
                                           log_pathname_fully_extracted_warcs=__log_pathname_fully_extracted_warcs,
                                           extractor_cls=extractor_cls,
-                                          fetch_images=fetch_images)
+                                          fetch_images=fetch_images, valid_languages=valid_languages)
