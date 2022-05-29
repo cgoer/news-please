@@ -49,6 +49,8 @@ my_local_download_dir_warc = './cc_download_warc/'
 my_local_download_dir_article = './cc_download_articles/'
 # hosts (if None or empty list, any host is OK)
 my_filter_valid_hosts = []  # example: ['elrancaguino.cl']
+
+my_dry_run=False
 # start date (if None, any date is OK as start date), as datetime
 my_filter_start_date = None  # datetime.datetime(2016, 1, 1)
 # end date (if None, any date is OK as end date), as datetime
@@ -183,7 +185,8 @@ def main():
                                                log_level=my_log_level,
                                                delete_warc_after_extraction=my_delete_warc_after_extraction,
                                                continue_process=True,
-                                               fetch_images=my_fetch_images)
+                                               fetch_images=my_fetch_images,
+                                               dry_run=my_dry_run)
 
 
 if __name__ == "__main__":
